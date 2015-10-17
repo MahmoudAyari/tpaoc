@@ -26,7 +26,7 @@ public final class Ihm extends Application {
 	    } catch (IOException ex) {
 	      System.err.println("Erreur au chargement: " + ex);
 	    }
-	    primaryStage.setTitle("Monométre");
+	    primaryStage.setTitle("Métronome");
 	    primaryStage.show();
 	  }
 
