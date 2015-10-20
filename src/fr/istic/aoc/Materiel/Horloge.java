@@ -1,14 +1,12 @@
 package fr.istic.aoc.Materiel;
 
+import fr.istic.aoc.command.Command;
+
 public interface Horloge {
 
-	Horloge getHorloge();
-
-	Clavier getClavier();
-
-	Molette getMolette();
-
-	EmetteurSonore getEmetteurSonore();
-
-	Afficheur getAfficheur();
+	void activerPeriodiquement(Command command, float periode);
+	
+	void activerApresDelai(Command command, float periode);
+	
+	void desactiver(Command command);
 }
