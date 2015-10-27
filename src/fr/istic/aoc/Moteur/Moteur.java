@@ -4,19 +4,21 @@ import fr.istic.aoc.command.Command;
 
 public interface Moteur {
 	
-	public int getTempo();
+	public float getTempo();
 	
-	public void setTempo(int tempo);
+	public void setTempo(float tempo);
 	
-	public boolean getEnMarche();
+	public boolean getEtat();
 	
-	public void setEnMarche(boolean enMarche);
+	public void setEtat(boolean enMarche);
 	
 	public void setCmdMarquerTemps(Command cmd);
 	
 	public void setCmdMarquerMesure(Command cmd);
 	
 	
+	public void setNbTemps(int nbTemps) ;
 	
+	public int getNbTemps();
 
 }
