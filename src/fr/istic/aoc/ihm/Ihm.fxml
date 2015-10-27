@@ -10,15 +10,15 @@
 <?scenebuilder-stylesheet JMetroLightTheme.css?>
 <?scenebuilder-stylesheet JMetroDarkTheme.css?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="600.0" styleClass="background" xmlns:fx="http://javafx.com/fxml">
+<AnchorPane  fx:controller="fr.istic.aoc.view.View" id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="600.0" styleClass="background" xmlns:fx="http://javafx.com/fxml">
     <children>
       
        <Label layoutX="43.0" layoutY="30.0" styleClass="item-title" text="Tempo" />
-       <Slider fx:id="slider" layoutX="43.0" layoutY="50.0"  />
-       <Button fx:id="start"  layoutX="40.0" prefWidth="60.0" layoutY="100.0" text="Start" />
-       <Button fx:id="stop" layoutX="120.0" prefWidth="60.0" layoutY="100.0" text="Stop" />
-       <Button fx:id="inc"  layoutX="200.0"  prefWidth="60.0" layoutY="100.0" text="Inc" />
-       <Button fx:id="dec"  layoutX="280.0"  prefWidth="60.0" layoutY="100.0" text="Dec" />
+       <Slider fx:id="slider" onMouseReleased="#onSliderChanged" layoutX="43.0" layoutY="50.0"  />
+       <Button fx:id="start"  onAction="#onStart" layoutX="40.0" prefWidth="60.0" layoutY="100.0" text="Start" />
+       <Button fx:id="stop" onAction="#onStop"  layoutX="120.0" prefWidth="60.0" layoutY="100.0" text="Stop" />
+       <Button fx:id="inc"  onAction="#onInc" layoutX="200.0"  prefWidth="60.0" layoutY="100.0" text="Inc" />
+       <Button fx:id="dec"  onAction="#onDec" layoutX="280.0"  prefWidth="60.0" layoutY="100.0" text="Dec" />
 
       <Label layoutX="220.0" layoutY="30.0" styleClass="item-title" text="Afficheur" />
       <TextField fx:id="afficheur"  prefWidth="90.0" layoutX="220.0" layoutY="50.0"  />

@@ -1,6 +1,7 @@
 package fr.istic.aoc.view;
 
 
+import fr.istic.aoc.ihm.MainApp;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Slider;
@@ -26,24 +27,28 @@ public class View {
 	
 	@FXML
 	private void onStart(ActionEvent e){
-		
+		MainApp.getController().start();
 	}
 
 	@FXML
 	private void onStop(ActionEvent e){
-		
+		MainApp.getController().stop();
 	}
 	
 	@FXML
 	private void onDec(ActionEvent e){
+		MainApp.getController().decMesure();
 	}
 	
 	@FXML
 	private void onInc(ActionEvent e){
+		MainApp.getController().incMesure();
 	}
 	
 	@FXML
-	private void onSlider(MouseEvent e){
+	private void onSliderChanged(MouseEvent e){
+		
+		MainApp.getController().updateTempo();
 	}
 
 	public TextField getAfficheur() {
@@ -77,9 +82,6 @@ public class View {
 	public void setSlider(Slider slider) {
 		this.slider = slider;
 	}
-	
-	
-	
-	
+
 	
 }

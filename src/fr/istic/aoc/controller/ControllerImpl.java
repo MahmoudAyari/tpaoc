@@ -2,9 +2,14 @@ package fr.istic.aoc.controller;
 
 import fr.istic.aoc.Materiel.Horloge;
 import fr.istic.aoc.Materiel.HorlogeImpl;
+import fr.istic.aoc.Materiel.Materiel;
 import fr.istic.aoc.Moteur.Moteur;
 
 public class ControllerImpl implements Controller {
+	
+	private final int  MIN_MOLETTE=40;
+	private final int  MAX_MOLETTE=240;
+	
 	
 	private Moteur moteur;
 	private Horloge horloge;
@@ -39,8 +44,8 @@ public class ControllerImpl implements Controller {
 		
 	}
 
-	public void updateTempo(float tempo) {
-		this.moteur.setTempo(tempo);
+	public void updateTempo() {
+		this.moteur.setTempo((MAX_MOLETTE-MIN_MOLETTE)*Materiel.getMolette().position()+MIN_MOLETTE);
 		
 	}
 

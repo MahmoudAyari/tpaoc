@@ -12,7 +12,7 @@ public interface Controller {
 	public void marquerMesure();
 	
 	
-	public void updateTempo(float tempo);
+	public void updateTempo();
 	
 	public void incMesure();
 	
