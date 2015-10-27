@@ -13,7 +13,10 @@ public class View {
 	
 	
 	@FXML
-	private TextField afficheur;
+	private TextField temps;
+	
+	@FXML
+	private TextField mesure;
 	
 	@FXML
 	private Circle led1;
@@ -51,12 +54,22 @@ public class View {
 		MainApp.getController().updateTempo();
 	}
 
-	public TextField getAfficheur() {
-		return afficheur;
+	
+
+	public TextField getTemps() {
+		return temps;
 	}
 
-	public void setAfficheur(TextField afficheur) {
-		this.afficheur = afficheur;
+	public void setTemps(TextField temps) {
+		this.temps = temps;
+	}
+
+	public TextField getMesure() {
+		return mesure;
+	}
+
+	public void setMesure(TextField mesure) {
+		this.mesure = mesure;
 	}
 
 	public Circle getLed1() {

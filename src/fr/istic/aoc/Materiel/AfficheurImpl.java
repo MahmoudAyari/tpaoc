@@ -1,5 +1,7 @@
 package fr.istic.aoc.Materiel;
 
+import fr.istic.aoc.ihm.MainApp;
+
 public class AfficheurImpl  implements Afficheur{
 
 	public void allumerLed(int numLed) {
@@ -13,12 +15,11 @@ public class AfficheurImpl  implements Afficheur{
 	}
 
 	public void afficherTempo(int valeurTempo) {
-		// TODO Auto-generated method stub
-		
+		MainApp.getView().getTemps().setText("Tempo : "+valeurTempo);
 	}
 
 	public void afficherMesure(int valeurMesure) {
-		// TODO Auto-generated method stub
+		MainApp.getView().getMesure().setText("Mesure : "+valeurMesure);
 		
 	}
 
