@@ -7,6 +7,7 @@ import fr.istic.aoc.command.AllumerLed;
 import fr.istic.aoc.command.Command;
 import fr.istic.aoc.command.Tic;
 import fr.istic.aoc.controller.Controller;
+import fr.istic.aoc.ihm.MainApp;
 
 public class MoteurImpl implements Moteur {
 
@@ -41,6 +42,8 @@ public class MoteurImpl implements Moteur {
 
 	public void setTempo(float tempo) {
 		this.tempo = tempo;
+		//MainApp.getController().marquerTemps(tempo);
+		//Materiel.getAfficheur().afficherTempo(tempo);
 
 	}
 
@@ -89,9 +92,9 @@ public class MoteurImpl implements Moteur {
 	}
 
 	public void setNbTemps(int nbTemps) {
-		if (nbTemps >= 2 && nbTemps <= 7) {
+		
 			this.nbTemps = nbTemps;
-		}
+		
 	}
 
 	public Horloge getHorloge() {

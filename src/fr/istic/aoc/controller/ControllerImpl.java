@@ -55,19 +55,28 @@ public class ControllerImpl implements Controller {
 	}
 
 	public void updateTempo() {
-		this.moteur.setTempo((MAX_MOLETTE-MIN_MOLETTE)*Materiel.getMolette().position()+MIN_MOLETTE);
+		float tempo = ((MAX_MOLETTE-MIN_MOLETTE)*(Materiel.getMolette().position()/100)+MIN_MOLETTE);
+		this.moteur.setTempo(tempo);
+		Materiel.getAfficheur().afficherTempo(tempo);
 		
 	}
 
 	public void incMesure() {
-		this.moteur.setNbTemps(this.moteur.getNbTemps()+1);
+		
+		int mesure = this.moteur.getNbTemps()+1;
+		if (mesure >= 2 && mesure <= 7) {
+		this.moteur.setNbTemps(mesure);
+		Materiel.getAfficheur().afficherMesure(mesure);
+		}
 		
 	}
 
 	public void decMesure() {
-		this.moteur.setNbTemps(this.moteur.getNbTemps()-1);
-		
-		
+		int mesure = this.moteur.getNbTemps()-1;
+		if (mesure >= 2 && mesure <= 7) {
+			this.moteur.setNbTemps(mesure);
+			Materiel.getAfficheur().afficherMesure(mesure);
+			}
 	}
 
 }
