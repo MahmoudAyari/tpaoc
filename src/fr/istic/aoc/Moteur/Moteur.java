@@ -1,6 +1,7 @@
 package fr.istic.aoc.Moteur;
 
 import fr.istic.aoc.command.Command;
+import fr.istic.aoc.controller.Controller;
 
 public interface Moteur {
 	
@@ -21,4 +22,8 @@ public interface Moteur {
 	
 	public int getNbTemps();
 
+	
+	public void tick();
+	
+	
 }

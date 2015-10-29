@@ -6,7 +6,7 @@ public interface Afficheur {
 
 	void etendreLed(int numLed);
 
-	void afficherTempo(int valeurTempo);
+	void afficherTempo(float valeurTempo);
 
 	void afficherMesure(int valeurMesure);
 }

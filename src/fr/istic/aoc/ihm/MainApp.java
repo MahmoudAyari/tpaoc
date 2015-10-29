@@ -16,13 +16,13 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public final class MainApp extends Application {
+public  class MainApp extends Application {
 
-	public static MoteurImpl moteur;
+	public static Moteur moteur;
 	public static Controller controller;
 	public static View view;
 
-	public static MoteurImpl getMoteur() {
+	public static Moteur getMoteur() {
 		return moteur;
 	}
 
@@ -33,7 +33,7 @@ public final class MainApp extends Application {
 	public static View getView() {
 		return view;
 	}
-
+	
 	@Override
 	public void start(final Stage primaryStage) {
 		try {
@@ -46,9 +46,11 @@ public final class MainApp extends Application {
 			// Création de la scène.
 			final Scene scene = new Scene(root, 600, 250);
 			primaryStage.setScene(scene);
+			view = fxmlLoader.<View>getController();
 			moteur = new MoteurImpl();
 			controller= new ControllerImpl(moteur);
-			view = fxmlLoader.<View>getController();
+			
+			
 			
 			
 		} catch (IOException ex) {

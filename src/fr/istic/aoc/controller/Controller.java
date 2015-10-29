@@ -1,5 +1,7 @@
 package fr.istic.aoc.controller;
 
+import fr.istic.aoc.Moteur.Moteur;
+
 public interface Controller {
 
 	
@@ -10,7 +12,6 @@ public interface Controller {
 	public void marquerTemps();
 	
 	public void marquerMesure();
-	
 	
 	public void updateTempo();
 	

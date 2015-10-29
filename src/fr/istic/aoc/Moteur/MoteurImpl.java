@@ -2,12 +2,14 @@ package fr.istic.aoc.Moteur;
 
 import fr.istic.aoc.Materiel.Horloge;
 import fr.istic.aoc.Materiel.HorlogeImpl;
+import fr.istic.aoc.Materiel.Materiel;
 import fr.istic.aoc.command.AllumerLed;
 import fr.istic.aoc.command.Command;
 import fr.istic.aoc.command.Tic;
+import fr.istic.aoc.controller.Controller;
 
 public class MoteurImpl implements Moteur {
-	
+
 	private float tempo;
 	private Command tic;
 	private Command allumerLed1;
@@ -18,67 +20,68 @@ public class MoteurImpl implements Moteur {
 	private Command marquerTemps;
 	private Command marquerMesure;
 	private Horloge horloge;
-	
-
+   
 	public MoteurImpl() {
+
 		
-		tic= new Tic();
-		allumerLed1= new AllumerLed(0);
-		allumerLed2= new AllumerLed(1);
-		this.etat=false;
-		this.tempo=60;
-		this.nbTemps=3;
-		this.nbTempsCourant=1;
-		
+		allumerLed1 = new AllumerLed(0);
+		allumerLed2 = new AllumerLed(1);
+		this.etat = false;
+		this.tempo = 60;
+		this.nbTemps = 3;
+		this.nbTempsCourant = 1;
+		this.tic = new Tic(this);
+		Materiel.getAfficheur().afficherMesure(nbTemps);
+		Materiel.getAfficheur().afficherTempo(tempo);
 	}
 
 	public float getTempo() {
-		// TODO Auto-generated method stub
 		return tempo;
 	}
 
 	public void setTempo(float tempo) {
-		this.tempo=tempo;
-		
+		this.tempo = tempo;
+
 	}
 
 	public boolean getEtat() {
-		// TODO Auto-generated method stub
 		return this.etat;
 	}
 
 	public void setEtat(boolean etat) {
-		if(this.etat!=etat){
-			if(this.etat==true){
-				this.horloge= new HorlogeImpl();
+		if (this.etat != etat) {
+			this.etat = etat;
+			if (this.etat == true) {
+				if (this.horloge == null) {
+				this.horloge = new HorlogeImpl();
+				}
 			}
-			this.horloge.activerPeriodiquement(tic, 60/tempo);
-		}
-		else{
+			
+			this.horloge.activerPeriodiquement(tic, 60 / tempo);
+			
+		} else {
 			this.horloge.desactiver(tic);
 		}
 	}
 
-	
-	public void marquertemps(){
+	public void tick() {
 		if (nbTempsCourant == nbTemps) {
 			this.marquerMesure.execute();
 			this.nbTempsCourant = 1;
-		}
-		else {
+		} else {
 			this.marquerTemps.execute();
 			this.nbTempsCourant++;
 		}
 	}
 	
-	
+
 	public void setCmdMarquerTemps(Command cmd) {
-		this.marquerTemps=cmd;
+		this.marquerTemps = cmd;
 	}
 
 	public void setCmdMarquerMesure(Command cmd) {
-		this.marquerMesure=cmd;
-		
+		this.marquerMesure = cmd;
+
 	}
 
 	public int getNbTemps() {
@@ -86,8 +89,8 @@ public class MoteurImpl implements Moteur {
 	}
 
 	public void setNbTemps(int nbTemps) {
-		if(nbTemps>=2 && nbTemps<=7){
-		this.nbTemps = nbTemps;
+		if (nbTemps >= 2 && nbTemps <= 7) {
+			this.nbTemps = nbTemps;
 		}
 	}
 
@@ -99,7 +102,6 @@ public class MoteurImpl implements Moteur {
 		this.horloge = horloge;
 	}
 
-	
-	
+
 
 }

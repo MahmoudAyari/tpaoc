@@ -2,9 +2,9 @@ package fr.istic.aoc.Materiel;
 
 public class Materiel {
 
-	public static Afficheur afficheur = new AfficheurImpl();
-	public static EmetteurSonore emetteurSonore = new EmetteurSonoreImpl();
-	public static Molette molette = new MoletteImpl();
+	private static Afficheur afficheur = new AfficheurImpl();
+	private static EmetteurSonore emetteurSonore = new EmetteurSonoreImpl();
+	private static Molette molette = new MoletteImpl();
 //	public static Horloge horloge = new HorlogeImpl();
 //
 //	public static Horloge getHorloge() {

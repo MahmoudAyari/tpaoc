@@ -4,6 +4,10 @@ import fr.istic.aoc.Materiel.Horloge;
 import fr.istic.aoc.Materiel.HorlogeImpl;
 import fr.istic.aoc.Materiel.Materiel;
 import fr.istic.aoc.Moteur.Moteur;
+import fr.istic.aoc.Moteur.MoteurImpl;
+import fr.istic.aoc.command.Command;
+import fr.istic.aoc.command.MarqueMesure;
+import fr.istic.aoc.command.MarquerTemps;
 
 public class ControllerImpl implements Controller {
 	
@@ -12,18 +16,24 @@ public class ControllerImpl implements Controller {
 	
 	
 	private Moteur moteur;
-	private Horloge horloge;
 	
-	
+	private Command marquerTemps;
+	private Command marquerMesure;
 	
 
 	public ControllerImpl(Moteur moteur) {
 		super();
+		marquerMesure = new MarqueMesure(this);
+		marquerTemps= new MarquerTemps(this);
 		this.moteur = moteur;
-		this.horloge = new HorlogeImpl();
+		this.moteur.setCmdMarquerMesure(marquerMesure);
+		this.moteur.setCmdMarquerTemps(marquerTemps);
+		
 		
 	}
 
+
+	
 	public void start() {
 		this.moteur.setEtat(true);
 		
