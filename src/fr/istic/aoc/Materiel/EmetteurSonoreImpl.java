@@ -1,14 +1,25 @@
 package fr.istic.aoc.Materiel;
 
-import java.applet.Applet;
+import java.io.*;
+import sun.audio.*;
+
+
 
 public class EmetteurSonoreImpl implements EmetteurSonore {
 
-//	java.net.URL url = getClass().getResource("res/beep.wav");
-//	java.applet.AudioClip audio = Applet.newAudioClip(url);
-
+	
 	public void emettreClic() {
-		//audio.play();
+		try{
+		String url = "res/beep.wav";
+		 AudioStream audioStream ;
+			
+		 InputStream in = new FileInputStream(url);
+		  audioStream = new AudioStream(in);
+		     AudioPlayer.player.start(audioStream);
+		  }  catch (IOException ex) {
+	            System.out.println("Error playing the audio file.");
+	            ex.printStackTrace();
+	        }
 	}
 
 }

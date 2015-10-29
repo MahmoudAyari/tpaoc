@@ -1,6 +1,7 @@
 package fr.istic.aoc.view;
 
 
+import fr.istic.aoc.Materiel.Materiel;
 import fr.istic.aoc.ihm.MainApp;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -30,7 +31,8 @@ public class View {
 	
 	@FXML
 	private void onStart(ActionEvent e){
-		MainApp.getController().start();
+		//MainApp.getController().start();
+		Materiel.getEmetteurSonore().emettreClic();
 	}
 
 	@FXML
