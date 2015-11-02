@@ -7,6 +7,12 @@ import com.sun.xml.internal.bind.v2.runtime.unmarshaller.Loader;
 
 import fr.istic.aoc.Moteur.Moteur;
 import fr.istic.aoc.Moteur.MoteurImpl;
+import fr.istic.aoc.command.Command;
+import fr.istic.aoc.command.MarqueMesure;
+import fr.istic.aoc.command.MarquerTemps;
+import fr.istic.aoc.command.Start;
+import fr.istic.aoc.command.Stop;
+import fr.istic.aoc.command.Tic;
 import fr.istic.aoc.controller.Controller;
 import fr.istic.aoc.controller.ControllerImpl;
 import fr.istic.aoc.view.View;
@@ -49,6 +55,21 @@ public  class MainApp extends Application {
 			view = fxmlLoader.<View>getController();
 			moteur = new MoteurImpl();
 			controller= new ControllerImpl(moteur);
+			
+			Command cmdMarquerTemps = new MarquerTemps(controller);
+			moteur.setCmdMarquerTemps(cmdMarquerTemps);
+			
+			Command cmdMarquerMesure = new MarqueMesure(controller);
+			moteur.setCmdMarquerMesure(cmdMarquerMesure);
+			
+			Command cmdTic = new Tic(controller);
+			moteur.setCmdTic(cmdTic);
+			
+			Command cmdStart = new Start(controller);
+			view.setCmdStart(cmdStart);
+			
+			Command cmdStop = new Stop(controller);
+			view.setCmdStop(cmdStop);
 			
 			
 			

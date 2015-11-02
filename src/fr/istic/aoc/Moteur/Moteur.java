@@ -17,11 +17,17 @@ public interface Moteur {
 	
 	public void setCmdMarquerMesure(Command cmd);
 	
+	public void setCmdTic(Command cmd);
+	
+	public void start();
 	
 	public void setNbTemps(int nbTemps) ;
 	
 	public int getNbTemps();
 
+	public void cmdMarquerTemps();
+	
+	public void cmdMarquerMesure();
 	
 	public void tick();
 	

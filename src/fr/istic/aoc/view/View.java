@@ -2,6 +2,7 @@ package fr.istic.aoc.view;
 
 
 import fr.istic.aoc.Materiel.Materiel;
+import fr.istic.aoc.command.Command;
 import fr.istic.aoc.ihm.MainApp;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,6 +13,10 @@ import javafx.scene.shape.Circle;
 
 public class View {
 	
+	private Command cmdStart;
+	private Command cmdStop;
+	private Command cmdIncr;
+	private Command cmdDec;
 	
 	@FXML
 	private TextField temps;
@@ -31,13 +36,20 @@ public class View {
 	
 	@FXML
 	private void onStart(ActionEvent e){
+		if(cmdStart != null){
+			cmdStart.execute();
+		}
 		//MainApp.getController().start();
-		Materiel.getEmetteurSonore().emettreClic();
+		//Materiel.getEmetteurSonore().emettreClic();
+		//Materiel.getAfficheur().allumerLed(1);
 	}
 
 	@FXML
 	private void onStop(ActionEvent e){
-		MainApp.getController().stop();
+		if(cmdStop != null){
+			cmdStop.execute();
+		}
+		//MainApp.getController().stop();
 	}
 	
 	@FXML
@@ -98,5 +110,22 @@ public class View {
 		this.slider = slider;
 	}
 
+	public void setCmdStart(Command cmdStart) {
+		this.cmdStart = cmdStart;
+	}
+
+	public void setCmdStop(Command cmdStop) {
+		this.cmdStop = cmdStop;
+	}
+
+	public void setCmdIncr(Command cmdIncr) {
+		this.cmdIncr = cmdIncr;
+	}
+
+	public void setCmdDec(Command cmdDec) {
+		this.cmdDec = cmdDec;
+	}
+
+	
 	
 }

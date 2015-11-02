@@ -5,6 +5,8 @@ import fr.istic.aoc.Materiel.HorlogeImpl;
 import fr.istic.aoc.Materiel.Materiel;
 import fr.istic.aoc.command.AllumerLed;
 import fr.istic.aoc.command.Command;
+import fr.istic.aoc.command.MarqueMesure;
+import fr.istic.aoc.command.MarquerTemps;
 import fr.istic.aoc.command.Tic;
 import fr.istic.aoc.controller.Controller;
 import fr.istic.aoc.ihm.MainApp;
@@ -13,33 +15,35 @@ public class MoteurImpl implements Moteur {
 
 	private float tempo;
 	private Command tic;
-	private Command allumerLed1;
-	private Command allumerLed2;
+	private Command marquerTemps;
+	private Command marquerMesure;
+	//private Command allumerLed1;
+	//private Command allumerLed2;
 	private boolean etat;
 	private int nbTemps;
 	private int nbTempsCourant;
-	private Command marquerTemps;
-	private Command marquerMesure;
+	
 	private Horloge horloge;
    
 	public MoteurImpl() {
 
-		
-		allumerLed1 = new AllumerLed(0);
-		allumerLed2 = new AllumerLed(1);
+		//marquerTemps = new MarquerTemps();
+		//marquerMesure = new MarqueMesure();
 		this.etat = false;
-		this.tempo = 60;
+		this.tempo = 40;
 		this.nbTemps = 3;
 		this.nbTempsCourant = 1;
-		this.tic = new Tic(this);
+		//this.tic = new Tic(this);
 		Materiel.getAfficheur().afficherMesure(nbTemps);
 		Materiel.getAfficheur().afficherTempo(tempo);
+		
 	}
 
 	public float getTempo() {
 		return tempo;
 	}
 
+	
 	public void setTempo(float tempo) {
 		this.tempo = tempo;
 		//MainApp.getController().marquerTemps(tempo);
@@ -58,23 +62,28 @@ public class MoteurImpl implements Moteur {
 				if (this.horloge == null) {
 				this.horloge = new HorlogeImpl();
 				}
+
+				this.horloge.activerPeriodiquement(tic, 60 / tempo);
+				this.horloge.activerPeriodiquement(marquerTemps, 60 / tempo);
+				this.horloge.activerPeriodiquement(marquerMesure, (60 / tempo)*nbTemps);
 			}
-			
-			this.horloge.activerPeriodiquement(tic, 60 / tempo);
-			
-		} else {
+		} 
+		if(this.etat == false){
 			this.horloge.desactiver(tic);
+			this.horloge.desactiver(marquerTemps);
+			this.horloge.desactiver(marquerMesure);
 		}
 	}
 
 	public void tick() {
-		if (nbTempsCourant == nbTemps) {
-			this.marquerMesure.execute();
-			this.nbTempsCourant = 1;
-		} else {
-			this.marquerTemps.execute();
-			this.nbTempsCourant++;
-		}
+		tic.execute();
+		//if (nbTempsCourant == nbTemps) {
+		//	this.marquerMesure.execute();
+		//	this.nbTempsCourant = 1;
+		//} else {
+		//	this.marquerTemps.execute();
+		//	this.nbTempsCourant++;
+		//}
 	}
 	
 
@@ -85,6 +94,20 @@ public class MoteurImpl implements Moteur {
 	public void setCmdMarquerMesure(Command cmd) {
 		this.marquerMesure = cmd;
 
+	}
+	
+	public void setCmdTic(Command cmd){
+		this.tic = cmd;
+	}
+	
+	public void cmdMarquerTemps(){
+			marquerTemps.execute();
+		
+	}
+	
+	public void cmdMarquerMesure(){
+			marquerMesure.execute();
+		
 	}
 
 	public int getNbTemps() {
@@ -105,6 +128,18 @@ public class MoteurImpl implements Moteur {
 		this.horloge = horloge;
 	}
 
+	//pour executer les commandes 
+	// y a d autre commande a ajouter
+	
 
+	public void start(){
+		if(!etat){
+			etat = true;
+			Materiel.getHorloge().activerPeriodiquement(tic, tempo);
+			Materiel.getHorloge().activerPeriodiquement(marquerTemps, tempo);
+			Materiel.getHorloge().activerPeriodiquement(marquerMesure, tempo*nbTemps);	
+		}
+		
+	}
 
 }

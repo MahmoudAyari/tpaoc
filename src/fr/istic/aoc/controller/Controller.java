@@ -9,6 +9,8 @@ public interface Controller {
 	
 	public void stop();
 	
+	public void tic();
+	
 	public void marquerTemps();
 	
 	public void marquerMesure();

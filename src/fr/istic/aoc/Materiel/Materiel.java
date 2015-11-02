@@ -5,12 +5,12 @@ public class Materiel {
 	private static Afficheur afficheur = new AfficheurImpl();
 	private static EmetteurSonore emetteurSonore = new EmetteurSonoreImpl();
 	private static Molette molette = new MoletteImpl();
-//	public static Horloge horloge = new HorlogeImpl();
-//
-//	public static Horloge getHorloge() {
-//		// TODO Auto-generated method stub
-//		return horloge;
-//	}
+	public static Horloge horloge = new HorlogeImpl();
+
+	public static Horloge getHorloge() {
+		// TODO Auto-generated method stub
+		return horloge;
+	}
 
 	public static Molette getMolette() {
 		// TODO Auto-generated method stub
