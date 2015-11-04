@@ -91,8 +91,14 @@ public class ControllerImpl implements Controller {
 
 	public void updateTempo() {
 		float tempo = ((MAX_MOLETTE-MIN_MOLETTE)*(Materiel.getMolette().position()/100)+MIN_MOLETTE);
+		if(tempo != this.moteur.getTempo()){
 		this.moteur.setTempo(tempo);
 		Materiel.getAfficheur().afficherTempo(tempo);
+		if(this.moteur.getEtat()){
+		stop();
+		start();
+		}
+		}
 		
 	}
 
@@ -102,6 +108,10 @@ public class ControllerImpl implements Controller {
 		if (mesure >= 2 && mesure <= 7) {
 		this.moteur.setNbTemps(mesure);
 		Materiel.getAfficheur().afficherMesure(mesure);
+		if(this.moteur.getEtat()){
+			stop();
+			start();
+			}
 		}
 		
 	}
@@ -111,6 +121,10 @@ public class ControllerImpl implements Controller {
 		if (mesure >= 2 && mesure <= 7) {
 			this.moteur.setNbTemps(mesure);
 			Materiel.getAfficheur().afficherMesure(mesure);
+			if(this.moteur.getEtat()){
+				stop();
+				start();
+				}
 			}
 	}
 

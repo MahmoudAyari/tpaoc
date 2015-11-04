@@ -8,6 +8,8 @@ import com.sun.xml.internal.bind.v2.runtime.unmarshaller.Loader;
 import fr.istic.aoc.Moteur.Moteur;
 import fr.istic.aoc.Moteur.MoteurImpl;
 import fr.istic.aoc.command.Command;
+import fr.istic.aoc.command.Decrement;
+import fr.istic.aoc.command.Increment;
 import fr.istic.aoc.command.MarqueMesure;
 import fr.istic.aoc.command.MarquerTemps;
 import fr.istic.aoc.command.Start;
@@ -70,6 +72,12 @@ public  class MainApp extends Application {
 			
 			Command cmdStop = new Stop(controller);
 			view.setCmdStop(cmdStop);
+			
+			Command cmdInc = new Increment(controller);
+			view.setCmdIncr(cmdInc);
+			
+			Command cmdDec = new Decrement(controller);
+			view.setCmdDec(cmdDec);
 			
 			
 			

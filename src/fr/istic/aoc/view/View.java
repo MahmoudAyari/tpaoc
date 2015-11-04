@@ -54,12 +54,18 @@ public class View {
 	
 	@FXML
 	private void onDec(ActionEvent e){
-		MainApp.getController().decMesure();
+		if(cmdDec != null){
+			cmdDec.execute();
+		}
+		//MainApp.getController().decMesure();
 	}
 	
 	@FXML
 	private void onInc(ActionEvent e){
-		MainApp.getController().incMesure();
+		if(cmdIncr != null){
+			cmdIncr.execute();
+		}
+		//MainApp.getController().incMesure();
 	}
 	
 	@FXML
