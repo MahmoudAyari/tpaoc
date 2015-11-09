@@ -5,6 +5,7 @@ import java.net.URL;
 
 import com.sun.xml.internal.bind.v2.runtime.unmarshaller.Loader;
 
+import fr.istic.aoc.Materiel.Materiel;
 import fr.istic.aoc.Moteur.Moteur;
 import fr.istic.aoc.Moteur.MoteurImpl;
 import fr.istic.aoc.command.Command;
@@ -78,6 +79,10 @@ public  class MainApp extends Application {
 			
 			Command cmdDec = new Decrement(controller);
 			view.setCmdDec(cmdDec);
+			
+			Materiel.getAfficheur().afficherMesure(moteur.getNbTemps());
+			
+			Materiel.getAfficheur().afficherTempo(moteur.getTempo());
 			
 			
 			

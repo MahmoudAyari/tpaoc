@@ -34,8 +34,9 @@ public class MoteurImpl implements Moteur {
 		this.nbTemps = 3;
 		this.nbTempsCourant = 1;
 		//this.tic = new Tic(this);
-		Materiel.getAfficheur().afficherMesure(nbTemps);
-		Materiel.getAfficheur().afficherTempo(tempo);
+		
+		//Materiel.getAfficheur().afficherMesure(nbTemps);
+		//Materiel.getAfficheur().afficherTempo(tempo);
 		
 	}
 
