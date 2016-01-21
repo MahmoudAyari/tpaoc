@@ -21,6 +21,8 @@ public interface Controller {
 	
 	public void decMesure();
 	
+	//public void sliderChange();
+	
 	
 	
 	

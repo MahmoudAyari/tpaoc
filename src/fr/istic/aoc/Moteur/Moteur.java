@@ -2,6 +2,7 @@ package fr.istic.aoc.Moteur;
 
 import fr.istic.aoc.command.Command;
 import fr.istic.aoc.controller.Controller;
+import v2.Materiel.Horloge;
 
 public interface Moteur {
 	
@@ -19,8 +20,6 @@ public interface Moteur {
 	
 	public void setCmdTic(Command cmd);
 	
-	public void start();
-	
 	public void setNbTemps(int nbTemps) ;
 	
 	public int getNbTemps();
@@ -30,6 +29,10 @@ public interface Moteur {
 	public void cmdMarquerMesure();
 	
 	public void tick();
+	
+	public Horloge getHorloge();
+	
+	public void setHorloge(Horloge horloge);
 	
 	
 }

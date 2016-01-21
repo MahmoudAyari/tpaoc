@@ -1,15 +1,23 @@
 package fr.istic.aoc.view;
 
 
-import fr.istic.aoc.Materiel.Materiel;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
 import fr.istic.aoc.command.Command;
 import fr.istic.aoc.ihm.MainApp;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
+import v2.Materiel.Materiel;
 
 public class View {
 	
@@ -17,12 +25,17 @@ public class View {
 	private Command cmdStop;
 	private Command cmdIncr;
 	private Command cmdDec;
+	private Command cmdSlider;
+	
+	
+	private final int TEMPO_LED = 0;
+	private final int BAR_LED = 1;
 	
 	@FXML
 	private TextField temps;
 	
 	@FXML
-	private TextField mesure;
+	private  TextField mesure;
 	
 	@FXML
 	private Circle led1;
@@ -70,8 +83,10 @@ public class View {
 	
 	@FXML
 	private void onSliderChanged(MouseEvent e){
-		
-		MainApp.getController().updateTempo();
+		if(cmdSlider!= null){
+		cmdSlider.execute();
+		}
+		//MainApp.getController().updateTempo();
 	}
 
 	
@@ -131,7 +146,78 @@ public class View {
 	public void setCmdDec(Command cmdDec) {
 		this.cmdDec = cmdDec;
 	}
+	
+	public void setCmdSlider(Command cmdSlider){
+		this.cmdSlider = cmdSlider;
+	}
 
 	
 	
+	
+
+	
+	
+	public void allumerLed(int numLed) {
+		if(numLed==TEMPO_LED){
+			Platform.runLater(new Runnable() {
+				public void run() {
+					led1.setFill(Color.GREEN);
+			    }
+			});
+		}
+		else if(numLed==BAR_LED){
+			Platform.runLater(new Runnable() {
+				public void run() {
+					led2.setFill(Color.BLUE);
+			    }
+			});
+		}
+		
+		
+	}
+
+	public void etendreLed(int numLed) {
+		if(numLed==TEMPO_LED){
+			Platform.runLater(new Runnable() {
+				public void run() {
+					led1.setFill(Color.BLACK);
+			    }
+			});
+		}
+		else if(numLed==BAR_LED){
+			Platform.runLater(new Runnable() {
+				public void run() {
+					led2.setFill(Color.BLACK);
+			    }
+			});
+		}
+		
+	}
+
+	
+
+	public void afficherMesure(int valeurMesure) {
+		mesure.setText("Mesure : "+valeurMesure);
+		
+	}
+
+	public void afficherTempo(float valeurTempo) {
+		temps.setText("Tempo : "+valeurTempo);
+		
+	}
+	
+	public void emettreClic(){
+		
+		try{
+			String url = "res/beep.wav";
+			 AudioStream audioStream ;
+				
+			 InputStream in = new FileInputStream(url);
+			  audioStream = new AudioStream(in);
+			     AudioPlayer.player.start(audioStream);
+			  }  catch (IOException ex) {
+		            System.out.println("Error playing the audio file.");
+		            ex.printStackTrace();
+		        }
+	}
 }

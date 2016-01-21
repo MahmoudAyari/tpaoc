@@ -1,9 +1,9 @@
 package fr.istic.aoc.test;
 
-import fr.istic.aoc.Materiel.Materiel;
 import fr.istic.aoc.Moteur.Moteur;
 import fr.istic.aoc.Moteur.MoteurImpl;
 import fr.istic.aoc.ihm.MainApp;
+import v2.Materiel.Materiel;
 
 import static org.junit.Assert.*;
 

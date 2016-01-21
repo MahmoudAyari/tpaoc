@@ -1,4 +1,4 @@
-package fr.istic.aoc.Materiel;
+package v2.Materiel;
 
 import fr.istic.aoc.ihm.MainApp;
 

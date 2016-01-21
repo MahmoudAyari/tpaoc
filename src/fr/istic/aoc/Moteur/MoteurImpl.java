@@ -1,15 +1,14 @@
 package fr.istic.aoc.Moteur;
 
-import fr.istic.aoc.Materiel.Horloge;
-import fr.istic.aoc.Materiel.HorlogeImpl;
-import fr.istic.aoc.Materiel.Materiel;
-import fr.istic.aoc.command.AllumerLed;
 import fr.istic.aoc.command.Command;
 import fr.istic.aoc.command.MarqueMesure;
 import fr.istic.aoc.command.MarquerTemps;
 import fr.istic.aoc.command.Tic;
 import fr.istic.aoc.controller.Controller;
 import fr.istic.aoc.ihm.MainApp;
+import v2.Materiel.Horloge;
+import v2.Materiel.HorlogeImpl;
+import v2.Materiel.Materiel;
 
 public class MoteurImpl implements Moteur {
 
@@ -17,8 +16,6 @@ public class MoteurImpl implements Moteur {
 	private Command tic;
 	private Command marquerTemps;
 	private Command marquerMesure;
-	//private Command allumerLed1;
-	//private Command allumerLed2;
 	private boolean etat;
 	private int nbTemps;
 	private int nbTempsCourant;
@@ -60,6 +57,7 @@ public class MoteurImpl implements Moteur {
 		if (this.etat != etat) {
 			this.etat = etat;
 			if (this.etat == true) {
+				
 				if (this.horloge == null) {
 				this.horloge = new HorlogeImpl();
 				}
@@ -129,18 +127,7 @@ public class MoteurImpl implements Moteur {
 		this.horloge = horloge;
 	}
 
-	//pour executer les commandes 
-	// y a d autre commande a ajouter
 	
 
-	public void start(){
-		if(!etat){
-			etat = true;
-			Materiel.getHorloge().activerPeriodiquement(tic, tempo);
-			Materiel.getHorloge().activerPeriodiquement(marquerTemps, tempo);
-			Materiel.getHorloge().activerPeriodiquement(marquerMesure, tempo*nbTemps);	
-		}
-		
-	}
 
 }

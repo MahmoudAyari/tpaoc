@@ -5,7 +5,6 @@ import java.net.URL;
 
 import com.sun.xml.internal.bind.v2.runtime.unmarshaller.Loader;
 
-import fr.istic.aoc.Materiel.Materiel;
 import fr.istic.aoc.Moteur.Moteur;
 import fr.istic.aoc.Moteur.MoteurImpl;
 import fr.istic.aoc.command.Command;
@@ -13,6 +12,7 @@ import fr.istic.aoc.command.Decrement;
 import fr.istic.aoc.command.Increment;
 import fr.istic.aoc.command.MarqueMesure;
 import fr.istic.aoc.command.MarquerTemps;
+import fr.istic.aoc.command.SliderChange;
 import fr.istic.aoc.command.Start;
 import fr.istic.aoc.command.Stop;
 import fr.istic.aoc.command.Tic;
@@ -24,12 +24,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import v2.Materiel.Materiel;
 
 public  class MainApp extends Application {
 
 	public static Moteur moteur;
 	public static Controller controller;
 	public static View view;
+	public static Materiel materiel ;
 
 	public static Moteur getMoteur() {
 		return moteur;
@@ -56,8 +58,9 @@ public  class MainApp extends Application {
 			final Scene scene = new Scene(root, 600, 250);
 			primaryStage.setScene(scene);
 			view = fxmlLoader.<View>getController();
+			materiel = new Materiel();
 			moteur = new MoteurImpl();
-			controller= new ControllerImpl(moteur);
+			controller= new ControllerImpl(moteur,view);
 			
 			Command cmdMarquerTemps = new MarquerTemps(controller);
 			moteur.setCmdMarquerTemps(cmdMarquerTemps);
@@ -80,9 +83,12 @@ public  class MainApp extends Application {
 			Command cmdDec = new Decrement(controller);
 			view.setCmdDec(cmdDec);
 			
-			Materiel.getAfficheur().afficherMesure(moteur.getNbTemps());
+			Command cmdSlider = new SliderChange(controller);
+			view.setCmdSlider(cmdSlider);
 			
-			Materiel.getAfficheur().afficherTempo(moteur.getTempo());
+			this.materiel.getAfficheur().afficherMesure(moteur.getNbTemps());
+			
+			this.materiel.getAfficheur().afficherTempo(moteur.getTempo());
 			
 			
 			

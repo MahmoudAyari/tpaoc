@@ -1,4 +1,4 @@
-package fr.istic.aoc.Materiel;
+package v2.Materiel;
 
 import java.util.ArrayList;
 import java.util.List;
