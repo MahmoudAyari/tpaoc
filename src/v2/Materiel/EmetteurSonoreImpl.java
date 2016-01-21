@@ -2,11 +2,17 @@ package v2.Materiel;
 
 import java.io.*;
 import sun.audio.*;
+import v2.View;
 
 
 
 public class EmetteurSonoreImpl implements EmetteurSonore {
 
+	View view;
+	
+	public EmetteurSonoreImpl(View view){
+		this.view=view;
+	}
 	
 	public void emettreClic() {
 		try{

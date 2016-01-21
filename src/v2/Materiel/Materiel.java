@@ -1,10 +1,18 @@
 package v2.Materiel;
 
-public class Materiel {
+import v2.View;
 
-	private static Afficheur afficheur = new AfficheurImpl();
-	private static EmetteurSonore emetteurSonore = new EmetteurSonoreImpl();
-	private static Molette molette = new MoletteImpl();
+public class Materiel {
+	
+	static View view;
+	
+	Materiel(View view){
+		this.view=view;
+	}
+	
+	private static Afficheur afficheur = new AfficheurImpl(view);
+	private static EmetteurSonore emetteurSonore = new EmetteurSonoreImpl(view);
+	private static Molette molette = new MoletteImpl(view);
 	//public static Horloge horloge = new HorlogeImpl();
 
 //	public static Horloge getHorloge() {

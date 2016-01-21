@@ -24,7 +24,7 @@ public class ControllerImpl implements Controller {
 	
 	public View view;
 	
-	public  Materiel materiel ;
+//	public  Materiel materiel ;
 	
 
 	public ControllerImpl(Moteur moteur,View view) {
@@ -77,7 +77,7 @@ public class ControllerImpl implements Controller {
 	}
 
 	public void updateTempo() {
-		float tempo = ((MAX_MOLETTE-MIN_MOLETTE)*(Materiel.getMolette().position()/100)+MIN_MOLETTE);
+		float tempo = (float)((MAX_MOLETTE-MIN_MOLETTE)*(view.getSlider().getValue()/100)+MIN_MOLETTE);
 		if(tempo != this.moteur.getTempo()){
 		this.moteur.setTempo(tempo);
 		this.view.afficherTempo(tempo);

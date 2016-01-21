@@ -3,31 +3,23 @@ package v2.Materiel;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class ClavierImpl implements Clavier,KeyListener{
+import v2.View;
 
-	// ihm et constructeur 
+public class ClavierImpl implements Clavier{
+
 	
+	View view;
+	
+	public ClavierImpl(View view){
+		this.view=view;
+	}
 	
 	public boolean touchePres(int i) {
-		return false;
+		//return view.tabButton[i].isActive();
+		return true;
 	}
 
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void keyPressed(KeyEvent e) {
-		char Caract = e.getKeyChar();
-		System.out.println("char" + Caract);
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 
 }

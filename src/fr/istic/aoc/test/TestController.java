@@ -26,7 +26,7 @@ public class TestController {
 		 @Before
 		    public  void avantTest() {
 			 m = new MoteurImpl();
-			 ma = new Materiel();
+			 //ma = new Materiel();
 		     c = new ControllerImpl(m,v);
 		    }
 		 

@@ -58,7 +58,7 @@ public  class MainApp extends Application {
 			final Scene scene = new Scene(root, 600, 250);
 			primaryStage.setScene(scene);
 			view = fxmlLoader.<View>getController();
-			materiel = new Materiel();
+			//materiel = new Materiel();
 			moteur = new MoteurImpl();
 			controller= new ControllerImpl(moteur,view);
 			
@@ -86,9 +86,9 @@ public  class MainApp extends Application {
 			Command cmdSlider = new SliderChange(controller);
 			view.setCmdSlider(cmdSlider);
 			
-			this.materiel.getAfficheur().afficherMesure(moteur.getNbTemps());
+			view.afficherMesure(moteur.getNbTemps());
 			
-			this.materiel.getAfficheur().afficherTempo(moteur.getTempo());
+			view.afficherTempo(moteur.getTempo());
 			
 			
 			
