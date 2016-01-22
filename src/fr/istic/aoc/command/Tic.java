@@ -16,7 +16,6 @@ public class Tic implements Command {
 
 
 	public void execute() {
-		// TODO Auto-generated method stub
 		this.controller.tic();
 	}
 

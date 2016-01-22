@@ -62,7 +62,6 @@ public class HorlogeImpl implements Horloge{
 				@Override
 				public void run() {
 					command.execute();  
-					//System.out.println("cmd"+ command.toString());
 				}
 			};
 			timer.scheduleAtFixedRate(task, 0, msPeriode);

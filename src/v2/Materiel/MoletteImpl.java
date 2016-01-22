@@ -12,7 +12,6 @@ public class MoletteImpl implements Molette {
 		this.view=view;
 	}
 	public float position() {
-		// TODO Auto-generated method stub
 		return (float) view.getSlider().getValue();
 	}
 

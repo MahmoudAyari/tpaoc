@@ -15,17 +15,9 @@ public class Materiel {
 	private static EmetteurSonore emetteurSonore = new EmetteurSonoreImpl(view);
 	private static Molette molette = new MoletteImpl(view);
 	private static Clavier clavier= new ClavierImpl(view);
-	//public static Horloge horloge = new HorlogeImpl();
-
-//	public static Horloge getHorloge() {
-//		// TODO Auto-generated method stub
-//		return horloge;
-//	}
-
 	
 	
 	public static Molette getMolette() {
-		// TODO Auto-generated method stub
 		return molette;
 	}
 
@@ -38,12 +30,10 @@ public class Materiel {
 	}
 
 	public static EmetteurSonore getEmetteurSonore() {
-		// TODO Auto-generated method stub
 		return emetteurSonore;
 	}
 
 	public static Afficheur getAfficheur() {
-		// TODO Auto-generated method stub
 		return afficheur;
 	}
 
@@ -58,10 +48,6 @@ public class Materiel {
 	public static void setMolette(Molette molette) {
 		Materiel.molette = molette;
 	}
-
-//	public static void setHorloge(Horloge horloge) {
-//		Materiel.horloge = horloge;
-//	}
 
 	
 }

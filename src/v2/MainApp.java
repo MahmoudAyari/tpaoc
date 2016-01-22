@@ -36,7 +36,6 @@ public  class MainApp extends Application {
 	public static View view;
 	Adapter adapter ;
 	
-	//public static Materiel materiel ;
 
 	public static Moteur getMoteur() {
 		return moteur;
@@ -65,7 +64,6 @@ public  class MainApp extends Application {
 			view =new View();
 			view = fxmlLoader.<View>getController();
 			adapter =new ConcreteAdapter(view,controller);
-			//materiel = new Materiel();
 			moteur = new MoteurImpl();
 			
 			
@@ -75,7 +73,6 @@ public  class MainApp extends Application {
 			controller.setIhm(adapter);
 			
 			adapter = new ConcreteAdapter(view, controller);
-			//adapter.setIhm(view);
 			
 			view.setAdapter(adapter);
 			

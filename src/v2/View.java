@@ -117,10 +117,7 @@ public class View implements Ihm{
 	
 	@FXML
 	private void onSliderChanged(MouseEvent e){
-		if(cmdSlider!= null){
-		cmdSlider.execute();
-		}
-		//MainApp.getController().updateTempo();
+		
 	}
 
 	

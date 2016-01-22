@@ -25,7 +25,6 @@ public class ControllerImpl implements Controller {
 	
 	public Ihm ihm;
 	
-//	public  Materiel materiel ;
 	
 	public ControllerImpl(){
 		
@@ -134,12 +133,10 @@ public class ControllerImpl implements Controller {
 	}
 
 	public View getView() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public void setView(Ihm view) {
-		// TODO Auto-generated method stub
 		
 	}
 

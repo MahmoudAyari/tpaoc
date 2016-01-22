@@ -17,6 +17,5 @@ private Adapter adapter;
 	public void execute() {
 		
 		adapter.lireMateriel();
-		//this.controller.lireMateriel();
 	}
 }

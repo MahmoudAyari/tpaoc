@@ -15,7 +15,6 @@ public class AfficheurImpl  implements Afficheur{
 	
 	private final int TEMPO_LED = 0;
 	private final int BAR_LED = 1;
-	//MainApp mainApp = new MainApp();
 	
 	
 	public void allumerLed(int numLed) {

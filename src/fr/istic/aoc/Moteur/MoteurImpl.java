@@ -24,16 +24,10 @@ public class MoteurImpl implements Moteur {
    
 	public MoteurImpl() {
 
-		//marquerTemps = new MarquerTemps();
-		//marquerMesure = new MarqueMesure();
 		this.etat = false;
 		this.tempo = 40;
 		this.nbTemps = 3;
 		this.nbTempsCourant = 1;
-		//this.tic = new Tic(this);
-		
-		//Materiel.getAfficheur().afficherMesure(nbTemps);
-		//Materiel.getAfficheur().afficherTempo(tempo);
 		
 	}
 
@@ -44,8 +38,6 @@ public class MoteurImpl implements Moteur {
 	
 	public void setTempo(float tempo) {
 		this.tempo = tempo;
-		//MainApp.getController().marquerTemps(tempo);
-		//Materiel.getAfficheur().afficherTempo(tempo);
 
 	}
 
@@ -76,13 +68,6 @@ public class MoteurImpl implements Moteur {
 
 	public void tick() {
 		tic.execute();
-		//if (nbTempsCourant == nbTemps) {
-		//	this.marquerMesure.execute();
-		//	this.nbTempsCourant = 1;
-		//} else {
-		//	this.marquerTemps.execute();
-		//	this.nbTempsCourant++;
-		//}
 	}
 	
 

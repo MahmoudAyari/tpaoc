@@ -52,9 +52,6 @@ public class View implements Ihm{
 		if(cmdStart != null){
 			cmdStart.execute();
 		}
-		//MainApp.getController().start();
-		//Materiel.getEmetteurSonore().emettreClic();
-		//Materiel.getAfficheur().allumerLed(1);
 	}
 
 	@FXML
@@ -62,7 +59,6 @@ public class View implements Ihm{
 		if(cmdStop != null){
 			cmdStop.execute();
 		}
-		//MainApp.getController().stop();
 	}
 	
 	@FXML
@@ -70,7 +66,6 @@ public class View implements Ihm{
 		if(cmdDec != null){
 			cmdDec.execute();
 		}
-		//MainApp.getController().decMesure();
 	}
 	
 	@FXML
@@ -78,7 +73,6 @@ public class View implements Ihm{
 		if(cmdIncr != null){
 			cmdIncr.execute();
 		}
-		//MainApp.getController().incMesure();
 	}
 	
 	@FXML
@@ -86,7 +80,6 @@ public class View implements Ihm{
 		if(cmdSlider!= null){
 		cmdSlider.execute();
 		}
-		//MainApp.getController().updateTempo();
 	}
 
 	
@@ -150,12 +143,6 @@ public class View implements Ihm{
 	public void setCmdSlider(Command cmdSlider){
 		this.cmdSlider = cmdSlider;
 	}
-
-	
-	
-	
-
-	
 	
 	public void allumerLed(int numLed) {
 		if(numLed==TEMPO_LED){

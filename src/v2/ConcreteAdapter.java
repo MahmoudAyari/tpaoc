@@ -83,16 +83,13 @@ public class ConcreteAdapter implements Adapter{
 	
 	public void allumerLed(int numLed) {
 		
-		//Materiel.getAfficheur().allumerLed(numLed);
 		view.getAfficheur().allumerLed(numLed);
-		//view.allumerLed(numLed);
+		
 		
 	}
 
 	public void etendreLed(int numLed) {
 		view.getAfficheur().etendreLed(numLed);
-		//Materiel.getAfficheur().etendreLed(numLed);
-		//view.etendreLed(numLed);
 		
 	}
 
@@ -100,29 +97,20 @@ public class ConcreteAdapter implements Adapter{
 
 	public void afficherMesure(int valeurMesure) {
 		view.getAfficheur().afficherMesure(valeurMesure);
-		//Materiel.getAfficheur().afficherMesure(valeurMesure);
-		//view.afficherMesure(valeurMesure);
 		
 	}
 
 	public void afficherTempo(float valeurTempo) {
 		view.getAfficheur().afficherTempo(valeurTempo);
-		//Materiel.getAfficheur().afficherTempo(valeurTempo);
-		//view.afficherTempo(valeurTempo);
 		
 	}
 	
 	public void emettreClic(){
 		
 		view.getEmetteurSonore().emettreClic();
-		//Materiel.getEmetteurSonore().emettreClic();
-		//view.emettreClic();
 		}
 	
 	public Slider getSlider() {
-		//Materiel.getSlider();
-		
-		//return (Slider) Materiel.getMolette();
 		return (Slider) view.getSlider();
 	}
 	
