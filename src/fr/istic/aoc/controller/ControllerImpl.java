@@ -6,6 +6,7 @@ import fr.istic.aoc.command.Command;
 import fr.istic.aoc.command.MarqueMesure;
 import fr.istic.aoc.command.MarquerTemps;
 import fr.istic.aoc.command.Tic;
+import fr.istic.aoc.view.Ihm;
 import fr.istic.aoc.view.View;
 import v2.Materiel.Horloge;
 import v2.Materiel.HorlogeImpl;
@@ -22,19 +23,37 @@ public class ControllerImpl implements Controller {
 	
 	private Moteur moteur;
 	
-	public View view;
+	public Ihm ihm;
 	
 //	public  Materiel materiel ;
 	
+	public ControllerImpl(){
+		
+	}
+	
+	public Moteur getMoteur() {
+		return moteur;
+	}
+
+	public void setMoteur(Moteur moteur) {
+		this.moteur = moteur;
+	}
+
+	public Ihm getIhm() {
+		return ihm;
+	}
+
+	public void setIhm(Ihm ihm) {
+		this.ihm = ihm;
+	}
 
 	public ControllerImpl(Moteur moteur,View view) {
 		super();
 		this.moteur = moteur;
-		this.view=view;
+		this.ihm=view;
 	}
 
 
-	
 	
 	public void start() {
 		if(!this.moteur.getEtat()){
@@ -50,37 +69,36 @@ public class ControllerImpl implements Controller {
 	}
 
 	public void marquerTemps() {
-		
-		this.view.allumerLed(TEMPO_LED);
+		this.ihm.allumerLed(TEMPO_LED);
 		try {
 			Thread.sleep(70);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		this.view.etendreLed(TEMPO_LED);
+		this.ihm.etendreLed(TEMPO_LED);
 		
 	}
 	
 	public void tic(){
-		this.view.emettreClic();
+		this.ihm.emettreClic();
 	}
 
 	public void marquerMesure() {
-		this.view.allumerLed(BAR_LED);
+		this.ihm.allumerLed(BAR_LED);
 		try {
 			Thread.sleep(70);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		this.view.etendreLed(BAR_LED);
+		this.ihm.etendreLed(BAR_LED);
 		
 	}
 
 	public void updateTempo() {
-		float tempo = (float)((MAX_MOLETTE-MIN_MOLETTE)*(view.getSlider().getValue()/100)+MIN_MOLETTE);
+		float tempo = (float)((MAX_MOLETTE-MIN_MOLETTE)*(ihm.getSlider().getValue()/100)+MIN_MOLETTE);
 		if(tempo != this.moteur.getTempo()){
 		this.moteur.setTempo(tempo);
-		this.view.afficherTempo(tempo);
+		this.ihm.afficherTempo(tempo);
 		if(this.moteur.getEtat()){
 		stop();
 		start();
@@ -94,7 +112,7 @@ public class ControllerImpl implements Controller {
 		int mesure = this.moteur.getNbTemps()+1;
 		if (mesure >= 2 && mesure <= 7) {
 		this.moteur.setNbTemps(mesure);
-		this.view.afficherMesure(mesure);
+		this.ihm.afficherMesure(mesure);
 		if(this.moteur.getEtat()){
 			stop();
 			start();
@@ -107,12 +125,23 @@ public class ControllerImpl implements Controller {
 		int mesure = this.moteur.getNbTemps()-1;
 		if (mesure >= 2 && mesure <= 7) {
 			this.moteur.setNbTemps(mesure);
-			this.view.afficherMesure(mesure);
+			this.ihm.afficherMesure(mesure);
 			if(this.moteur.getEtat()){
 				stop();
 				start();
 				}
 			}
 	}
+
+	public View getView() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void setView(Ihm view) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }

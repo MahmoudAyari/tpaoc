@@ -3,6 +3,7 @@ package v2.Materiel;
 import v2.View;
 
 public class Materiel {
+
 	
 	static View view;
 	
@@ -13,6 +14,7 @@ public class Materiel {
 	private static Afficheur afficheur = new AfficheurImpl(view);
 	private static EmetteurSonore emetteurSonore = new EmetteurSonoreImpl(view);
 	private static Molette molette = new MoletteImpl(view);
+	private static Clavier clavier= new ClavierImpl(view);
 	//public static Horloge horloge = new HorlogeImpl();
 
 //	public static Horloge getHorloge() {
@@ -20,9 +22,19 @@ public class Materiel {
 //		return horloge;
 //	}
 
+	
+	
 	public static Molette getMolette() {
 		// TODO Auto-generated method stub
 		return molette;
+	}
+
+	public static Clavier getClavier() {
+		return clavier;
+	}
+
+	public static void setClavier(Clavier clavier) {
+		Materiel.clavier = clavier;
 	}
 
 	public static EmetteurSonore getEmetteurSonore() {

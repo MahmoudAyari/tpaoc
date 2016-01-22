@@ -1,6 +1,9 @@
 package v2;
 
-public interface Adapter {
+import fr.istic.aoc.controller.Controller;
+import fr.istic.aoc.view.Ihm;
+
+public interface Adapter extends Controller,Ihm{
 
 	public void lireMateriel();
 }

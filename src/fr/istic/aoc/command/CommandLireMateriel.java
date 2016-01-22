@@ -1,19 +1,22 @@
 package fr.istic.aoc.command;
 
 import fr.istic.aoc.controller.Controller;
+import v2.Adapter;
 
 public class CommandLireMateriel implements Command {
 
-private Controller controller;
+private Adapter adapter;
 	
 	
-	public CommandLireMateriel(Controller controller) {
+	public CommandLireMateriel(Adapter adapter) {
 		super();
-		this.controller = controller;
+		this.adapter = adapter;
 	}
 
 
 	public void execute() {
+		
+		adapter.lireMateriel();
 		//this.controller.lireMateriel();
 	}
 }

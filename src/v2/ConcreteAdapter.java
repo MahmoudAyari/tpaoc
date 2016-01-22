@@ -1,9 +1,22 @@
 package v2;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
+import fr.istic.aoc.Moteur.Moteur;
 import fr.istic.aoc.command.CommandLireMateriel;
 import fr.istic.aoc.controller.Controller;
+import fr.istic.aoc.view.Ihm;
+import javafx.application.Platform;
+import javafx.scene.control.Slider;
+import javafx.scene.paint.Color;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
 import v2.View;
 import v2.Materiel.Horloge;
+import v2.Materiel.HorlogeImpl;
+import v2.Materiel.Materiel;
 
 public class ConcreteAdapter implements Adapter{
 
@@ -12,53 +25,204 @@ public class ConcreteAdapter implements Adapter{
 	
 	private Horloge horloge;
 
-	private boolean btnStart;//1
-	private boolean btnStop;//2
-	private boolean btnPlus;//3
-	private boolean btnMinus;//4
+	private boolean btnStart=false;//1
+	private boolean btnStop=false;//2
+	private boolean btnPlus=false;//3
+	private boolean btnMinus=false;//4
 
 	private float tempo;
 
 	private CommandLireMateriel read;
 
+	public ConcreteAdapter(View view,Controller controller){
+		super();
+		this.view=view;
+		this.controller=controller;
+	}
 	
 	public void lireMateriel() {
 
+		
 		boolean oldBtnStart = btnStart;
-		btnStart=view.getClavier().touchePres(1);
+		btnStart=view.getClavier().touchePres(0);
 		if ((btnStart != oldBtnStart )&& btnStart) {
 			controller.start();
 		}
 
 
 		boolean oldBtnStop = btnStop;
-		btnStop=view.getClavier().touchePres(2);
+		btnStop=view.getClavier().touchePres(1);
 		if ((btnStop != oldBtnStop )&& btnStop) {
 			controller.stop();
 		}
 
 		boolean oldBtnPlus = btnPlus;
-		btnPlus=view.getClavier().touchePres(3);
+		btnPlus=view.getClavier().touchePres(2);
 		if ((btnPlus != oldBtnPlus )&& btnPlus) {
 			controller.incMesure();
 		}
 
 		boolean oldBtnMinus = btnMinus;
-		btnMinus=view.getClavier().touchePres(4);
+		btnMinus=view.getClavier().touchePres(3);
 		if ((btnMinus != oldBtnMinus )&& btnMinus) {
 			controller.decMesure();
 		}
 
 		float oldtempo = tempo;
-		//permet de metre à jour uniquement quand on ne touche plus au slider
-		//if(!ihm.sliderTempo.getValueIsAdjusting()){
-			//permet de récuperer le vrai tempo
 		tempo= view.getMolette().position()*240;
-		System.out.println(tempo);
-		//}
 		if (tempo != oldtempo ) {
 			controller.updateTempo();
 		}
 
 	}
+	
+	
+	
+			//--------- methode de IHM --------------//
+	
+	
+	public void allumerLed(int numLed) {
+		
+		//Materiel.getAfficheur().allumerLed(numLed);
+		view.getAfficheur().allumerLed(numLed);
+		//view.allumerLed(numLed);
+		
+	}
+
+	public void etendreLed(int numLed) {
+		view.getAfficheur().etendreLed(numLed);
+		//Materiel.getAfficheur().etendreLed(numLed);
+		//view.etendreLed(numLed);
+		
+	}
+
+	
+
+	public void afficherMesure(int valeurMesure) {
+		view.getAfficheur().afficherMesure(valeurMesure);
+		//Materiel.getAfficheur().afficherMesure(valeurMesure);
+		//view.afficherMesure(valeurMesure);
+		
+	}
+
+	public void afficherTempo(float valeurTempo) {
+		view.getAfficheur().afficherTempo(valeurTempo);
+		//Materiel.getAfficheur().afficherTempo(valeurTempo);
+		//view.afficherTempo(valeurTempo);
+		
+	}
+	
+	public void emettreClic(){
+		
+		view.getEmetteurSonore().emettreClic();
+		//Materiel.getEmetteurSonore().emettreClic();
+		//view.emettreClic();
+		}
+	
+	public Slider getSlider() {
+		//Materiel.getSlider();
+		
+		//return (Slider) Materiel.getMolette();
+		return (Slider) view.getSlider();
+	}
+	
+	public boolean getbtnStart(){
+		return btnStart;
+	}
+	
+	public boolean getbtnStop(){
+		return btnStop;
+	}
+	
+	public boolean getbtnPlus(){
+		return btnPlus;
+	}
+	
+	public boolean getbtnMinus(){
+		return btnMinus;
+	}
+	
+	public Controller getController(){
+		return this;
+	}
+	
+	public void setController(Controller controller) {
+		this.controller = controller;
+	}
+	
+	
+	
+	
+	// ------------- methode de controller------------ //
+	
+public void start(){
+	controller.start();
+}
+	
+	public void stop(){
+		controller.stop();
+	}
+	
+	public void tic(){
+		controller.tic();
+	}
+	
+	public void marquerTemps(){
+		controller.marquerTemps();
+	}
+	
+	public void marquerMesure(){
+		controller.marquerMesure();
+	}
+	
+	public void updateTempo(){
+		controller.updateTempo();
+	}
+	
+	public void incMesure(){
+		controller.incMesure();
+	}
+	
+	public void decMesure(){
+		controller.decMesure();
+	}
+
+
+
+	public Moteur getMoteur() {
+		return controller.getMoteur();
+	}
+
+
+
+	public void setMoteur(Moteur moteur) {
+		controller.setMoteur(moteur);
+		
+	}
+
+
+
+	public Ihm getView() {
+		
+		return this;
+	}
+
+
+
+	
+	public void setIhm(Ihm view) {
+		this.view=(View)view;
+		
+	}
+	
+	public void setIhm(View i) {
+		this.view= i;
+		this.horloge = new HorlogeImpl();
+		this.read = new CommandLireMateriel(this);
+		this.horloge.activerPeriodiquement(read, (float) 0.05);
+	}
+
+
+
+
 }

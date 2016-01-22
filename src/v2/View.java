@@ -7,6 +7,7 @@ import java.io.InputStream;
 
 import fr.istic.aoc.command.Command;
 import fr.istic.aoc.ihm.MainApp;
+import fr.istic.aoc.view.Ihm;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,15 +19,19 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;
+import v2.Materiel.Afficheur;
+import v2.Materiel.AfficheurImpl;
 import v2.Materiel.Clavier;
 import v2.Materiel.ClavierImpl;
+import v2.Materiel.EmetteurSonore;
+import v2.Materiel.EmetteurSonoreImpl;
 import v2.Materiel.Horloge;
 import v2.Materiel.HorlogeImpl;
 import v2.Materiel.Materiel;
 import v2.Materiel.Molette;
 import v2.Materiel.MoletteImpl;
 
-public class View {
+public class View implements Ihm{
 	
 	private Command cmdStart;
 	private Command cmdStop;
@@ -36,9 +41,12 @@ public class View {
 	
 	private Adapter adapter;
 	private Horloge horloge;
-	private Molette molette;
+	
 	
 	Clavier clavier;
+	Afficheur afficheur;
+	EmetteurSonore emetteurSonore;
+	private Molette molette;
 	
 	
 	public View() {
@@ -46,15 +54,15 @@ public class View {
 		
 		horloge = new HorlogeImpl();
 		
-		//afficheur = new ConcreteAfficheur(this);
+		afficheur = new AfficheurImpl(this);
 		clavier = new ClavierImpl(this); 
-		//emetteurSonore = new ConcreteEmetteurSonore(this);
+		emetteurSonore = new EmetteurSonoreImpl(this);
 		molette = new MoletteImpl(this);
-		
+				
 		
 	}
 	
-	public Button[] tabButton = new Button[5] ;
+	
 	
 	private final int TEMPO_LED = 0;
 	private final int BAR_LED = 1;
@@ -89,36 +97,22 @@ public class View {
 	
 	@FXML
 	private void onStart(ActionEvent e){
-		if(cmdStart != null){
-			cmdStart.execute();
-		}
-		//MainApp.getController().start();
-		//Materiel.getEmetteurSonore().emettreClic();
-		//Materiel.getAfficheur().allumerLed(1);
+		 this.getClavier().appuyer(0);
 	}
 
 	@FXML
 	private void onStop(ActionEvent e){
-		if(cmdStop != null){
-			cmdStop.execute();
-		}
-		//MainApp.getController().stop();
+		this.getClavier().appuyer(1);
 	}
 	
 	@FXML
 	private void onDec(ActionEvent e){
-		if(cmdDec != null){
-			cmdDec.execute();
-		}
-		//MainApp.getController().decMesure();
+		this.getClavier().appuyer(2);
 	}
 	
 	@FXML
 	private void onInc(ActionEvent e){
-		if(cmdIncr != null){
-			cmdIncr.execute();
-		}
-		//MainApp.getController().incMesure();
+		this.getClavier().appuyer(3);
 	}
 	
 	@FXML
@@ -268,4 +262,46 @@ public class View {
 	public Molette getMolette(){
 		return molette;
 	}
+
+	public Adapter getAdapter() {
+		return adapter;
+	}
+
+	public void setAdapter(Adapter adapter) {
+		this.adapter = adapter;
+	}
+
+	public Horloge getHorloge() {
+		return horloge;
+	}
+
+	public void setHorloge(Horloge horloge) {
+		this.horloge = horloge;
+	}
+
+	public Afficheur getAfficheur() {
+		return afficheur;
+	}
+
+	public void setAfficheur(Afficheur afficheur) {
+		this.afficheur = afficheur;
+	}
+
+	public void setClavier(Clavier clavier) {
+		this.clavier = clavier;
+	}
+
+	public void setMolette(Molette molette) {
+		this.molette = molette;
+	}
+
+	public EmetteurSonore getEmetteurSonore() {
+		return emetteurSonore;
+	}
+
+	public void setEmetteurSonore(EmetteurSonore emetteurSonore) {
+		this.emetteurSonore = emetteurSonore;
+	}
+	
+	
 }

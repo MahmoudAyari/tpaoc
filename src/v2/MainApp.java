@@ -1,4 +1,4 @@
-package fr.istic.aoc.ihm;
+package v2;
 
 import java.io.IOException;
 import java.net.URL;
@@ -8,6 +8,7 @@ import com.sun.xml.internal.bind.v2.runtime.unmarshaller.Loader;
 import fr.istic.aoc.Moteur.Moteur;
 import fr.istic.aoc.Moteur.MoteurImpl;
 import fr.istic.aoc.command.Command;
+import fr.istic.aoc.command.CommandLireMateriel;
 import fr.istic.aoc.command.Decrement;
 import fr.istic.aoc.command.Increment;
 import fr.istic.aoc.command.MarqueMesure;
@@ -18,12 +19,14 @@ import fr.istic.aoc.command.Stop;
 import fr.istic.aoc.command.Tic;
 import fr.istic.aoc.controller.Controller;
 import fr.istic.aoc.controller.ControllerImpl;
-import fr.istic.aoc.view.View;
+import v2.View;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import v2.Materiel.Horloge;
+import v2.Materiel.HorlogeImpl;
 import v2.Materiel.Materiel;
 
 public  class MainApp extends Application {
@@ -31,6 +34,8 @@ public  class MainApp extends Application {
 	public static Moteur moteur;
 	public static Controller controller;
 	public static View view;
+	Adapter adapter ;
+	
 	//public static Materiel materiel ;
 
 	public static Moteur getMoteur() {
@@ -57,10 +62,28 @@ public  class MainApp extends Application {
 			// Création de la scène.
 			final Scene scene = new Scene(root, 600, 250);
 			primaryStage.setScene(scene);
+			view =new View();
 			view = fxmlLoader.<View>getController();
+			adapter =new ConcreteAdapter(view,controller);
 			//materiel = new Materiel();
 			moteur = new MoteurImpl();
-			controller= new ControllerImpl(moteur,view);
+			
+			
+			controller= new ControllerImpl();
+			
+			controller.setMoteur(moteur);
+			controller.setIhm(adapter);
+			
+			adapter = new ConcreteAdapter(view, controller);
+			//adapter.setIhm(view);
+			
+			view.setAdapter(adapter);
+			
+			Command commandLireMateriel = new CommandLireMateriel(adapter);
+			
+			Horloge horloge = new HorlogeImpl();
+			horloge.activerPeriodiquement(commandLireMateriel, (float) 0.05);
+			
 			
 			Command cmdMarquerTemps = new MarquerTemps(controller);
 			moteur.setCmdMarquerTemps(cmdMarquerTemps);
@@ -71,16 +94,16 @@ public  class MainApp extends Application {
 			Command cmdTic = new Tic(controller);
 			moteur.setCmdTic(cmdTic);
 			
-			Command cmdStart = new Start(controller);
+			Command cmdStart = new Start(adapter);
 			view.setCmdStart(cmdStart);
 			
-			Command cmdStop = new Stop(controller);
+			Command cmdStop = new Stop(adapter);
 			view.setCmdStop(cmdStop);
 			
-			Command cmdInc = new Increment(controller);
+			Command cmdInc = new Increment(adapter);
 			view.setCmdIncr(cmdInc);
 			
-			Command cmdDec = new Decrement(controller);
+			Command cmdDec = new Decrement(adapter);
 			view.setCmdDec(cmdDec);
 			
 			Command cmdSlider = new SliderChange(controller);

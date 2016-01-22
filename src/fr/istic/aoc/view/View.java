@@ -19,7 +19,7 @@ import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;
 import v2.Materiel.Materiel;
 
-public class View {
+public class View implements Ihm{
 	
 	private Command cmdStart;
 	private Command cmdStop;
