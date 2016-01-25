@@ -3,7 +3,6 @@ package fr.istic.aoc.ihm;
 import java.io.IOException;
 import java.net.URL;
 
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.Loader;
 
 import fr.istic.aoc.Moteur.Moteur;
 import fr.istic.aoc.Moteur.MoteurImpl;
@@ -20,6 +19,7 @@ import fr.istic.aoc.controller.Controller;
 import fr.istic.aoc.controller.ControllerImpl;
 import fr.istic.aoc.view.View;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
@@ -98,6 +98,10 @@ public  class MainApp extends Application {
 		}
 		primaryStage.setTitle("Métronome");
 		primaryStage.show();
+		primaryStage.setOnCloseRequest(t -> {
+            Platform.exit();
+            System.exit(0);
+        });
 	}
 
 	public static void main(String[] args) {
